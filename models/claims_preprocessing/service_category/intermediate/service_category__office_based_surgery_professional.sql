@@ -10,7 +10,7 @@ with numeric_hcpcs as (
     {% if target.type == 'duckdb' %}
         where try_cast('hcpcs_code' as integer) is not null
     {% else %}
-        where {{ safe_cast('hcpcs_code', 'int')}} is not null
+        where try_cast('hcpcs_code' as integer) is not null
     {% endif %}
 )
 
